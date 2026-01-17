@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@sledge-pdm/core':
-        specifier: ^1.1.7
-        version: 1.1.7
+        specifier: ^1.1.8
+        version: 1.1.8
       solid-js:
         specifier: ^1.9.10
         version: 1.9.10
@@ -542,8 +542,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@sledge-pdm/core@1.1.7':
-    resolution: {integrity: sha512-Qioc12YpHq/tAnlG6bXxV7/RGxHzIDrWtrwpDBQWwrsgeW2p955pUG1lsjXO9fOzeDzsGGG69R2KgR863+fVEw==, tarball: https://npm.pkg.github.com/download/@sledge-pdm/core/1.1.7/f318ce3eb790b086a5b9c20009c39ecabd0d6c55}
+  '@sledge-pdm/core@1.1.8':
+    resolution: {integrity: sha512-dIsgDSddW2G7TC0khXPjqnw+bIbEFYMhMeL4nvOmgghqeayhfn1SwcS77OHD0HPw18ME6cxguyFWo2Tw1V5RwQ==, tarball: https://npm.pkg.github.com/download/@sledge-pdm/core/1.1.8/fd60f3a1523c15e1264b2deb953aedc5c89a8c4e}
 
   '@standard-schema/spec@1.1.0':
     resolution: {integrity: sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w==}
@@ -2305,7 +2305,7 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.54.0':
     optional: true
 
-  '@sledge-pdm/core@1.1.7':
+  '@sledge-pdm/core@1.1.8':
     dependencies:
       '@types/pako': 2.0.4
       msgpackr: 1.11.8
