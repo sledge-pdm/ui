@@ -242,6 +242,11 @@ export function getCurrentBuiltinTheme(): Theme | null {
   return null;
 }
 
+export function getBuiltinThemeVars(name: Exclude<Theme, 'os'>): BuiltinThemeColors {
+  const themeVars = builtinThemes[name];
+  return themeVars;
+}
+
 function removeUserThemeStyleSheet(): void {
   if (userThemeStyleSheet) {
     document.adoptedStyleSheets = document.adoptedStyleSheets.filter((sheet) => sheet !== userThemeStyleSheet);

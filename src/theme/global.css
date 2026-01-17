@@ -2,134 +2,134 @@
 @font-face {
   font-family: 'ZFB03';
   src: url('/assets/fonts/04B/04B_03__.ttf');
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
   font-family: 'ZFB03B';
   src: url('/assets/fonts/04B/04B_03B_.ttf');
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
   font-family: 'ZFB08';
   src: url('/assets/fonts/04B/04B_08__.ttf');
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
   font-family: 'ZFB09';
   src: url('/assets/fonts/04B/04B_09__.ttf');
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
   font-family: 'ZFB11';
   src: url('/assets/fonts/04B/04B_11__.ttf');
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
   font-family: 'ZFB19';
   src: url('/assets/fonts/04B/04B_19__.ttf');
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
   font-family: 'ZFB20';
   src: url('/assets/fonts/04B/04B_20__.ttf');
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
   font-family: 'ZFB21';
   src: url('/assets/fonts/04B/04B_21__.ttf');
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
   font-family: 'ZFB24';
   src: url('/assets/fonts/04B/04B_24__.ttf');
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
   font-family: 'ZFB25';
   src: url('/assets/fonts/04B/04B_25__.ttf');
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
   font-family: 'ZFB30';
   src: url('/assets/fonts/04B/04B_30__.ttf');
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
   font-family: 'ZFB31';
   src: url('/assets/fonts/04B/04B_31__.ttf');
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
   font-family: Terminus;
   src: url('/assets/fonts/terminus/TerminusTTF-4.49.3.ttf');
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
   font-family: 'k8x12';
   src: url('/assets/fonts/k8x12/k8x12.ttf');
-  font-display: swap;
+  font-display: block;
   size-adjust: 75%;
 }
 
 @font-face {
   font-family: 'k8x12L';
   src: url('/assets/fonts/k8x12/k8x12L.ttf');
-  font-display: swap;
+  font-display: block;
   size-adjust: 75%;
 }
 
 @font-face {
   font-family: 'k8x12S';
   src: url('/assets/fonts/k8x12/k8x12S.ttf');
-  font-display: swap;
+  font-display: block;
   size-adjust: 75%;
 }
 
 @font-face {
   font-family: 'k12x8';
   src: url('/assets/fonts/k12x8/k12x8.ttf');
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
   font-family: 'PM10';
   src: url('/assets/fonts/PixelMPlus/PixelMplus10-Regular.ttf');
   font-weight: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
   font-family: 'PM10';
   src: url('/assets/fonts/PixelMPlus/PixelMplus10-Bold.ttf');
   font-weight: bold;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
   font-family: 'PM12';
   src: url('/assets/fonts/PixelMPlus/PixelMplus12-Regular.ttf');
   font-weight: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
   font-family: 'PM12';
   src: url('/assets/fonts/PixelMPlus/PixelMplus12-Bold.ttf');
   font-weight: bold;
-  font-display: swap;
+  font-display: block;
 }
 
 :root {
