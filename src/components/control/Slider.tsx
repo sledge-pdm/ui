@@ -22,12 +22,18 @@ interface SliderProps {
   onChange?: (newValue: number) => void;
   onDoubleClick?: () => void;
   onPointerDownOnValidArea?: (e: PointerEvent | MouseEvent) => boolean;
+  allowButtons?: number;
 }
 
 const Slider: Component<SliderProps> = (props) => {
   let labelRef: HTMLDivElement;
   let directInputRef: HTMLInputElement;
   let sliderRef: HTMLDivElement;
+
+  const isVertical = createMemo<boolean>(() => props.orientation === 'vertical');
+  const allowButtons = createMemo(() => props.allowButtons ?? 1);
+  const isAllowedClickButton = (e: MouseEvent) => (allowButtons() & (1 << e.button)) !== 0;
+
   const [directInputMode, setDirectInputMode] = createSignal(false);
 
   const [value, setValue] = createSignal(props.defaultValue ?? props.min);
@@ -45,8 +51,13 @@ const Slider: Component<SliderProps> = (props) => {
     return formatted;
   };
 
+  const toPercent = (value: number) => {
+    if (props.min === props.max) return 100;
+    return ((value - props.min) / (props.max - props.min)) * 100;
+  };
+
   const [isDrag, setDrag] = createSignal(false);
-  const percent = () => ((value() - props.min) / (props.max - props.min)) * 100;
+  const percent = createMemo(() => toPercent(value()));
 
   const update = (newValue: number) => {
     newValue = getFixedValue(newValue);
@@ -62,8 +73,7 @@ const Slider: Component<SliderProps> = (props) => {
   };
 
   const handlePointerDown = (e: PointerEvent) => {
-    const shouldStartDrag = onPointerDownOnValidArea(e);
-    if (shouldStartDrag) setDrag(true);
+    if (isAllowedClickButton(e) && onPointerDownOnValidArea(e)) setDrag(true);
     else setDrag(false);
   };
 
@@ -73,7 +83,7 @@ const Slider: Component<SliderProps> = (props) => {
     } else {
       const rect = sliderRef.getBoundingClientRect();
       let raw: number;
-      if (props.orientation === 'vertical') {
+      if (isVertical()) {
         const { top, height } = rect;
         // 上を max, 下を min にする (一般的 UI)。逆にしたい場合は (1 - posRatio)
         let pos = Math.max(0, Math.min(e.clientY - top, height));
@@ -93,11 +103,12 @@ const Slider: Component<SliderProps> = (props) => {
   };
 
   const onLineClick = (e: MouseEvent) => {
+    const isAllowedButton = isAllowedClickButton(e);
     const shouldStartDrag = onPointerDownOnValidArea(e);
-    if (!sliderRef || !shouldStartDrag) return;
+    if (!sliderRef || !isAllowedButton || !shouldStartDrag) return;
     const rect = sliderRef.getBoundingClientRect();
     let raw: number;
-    if (props.orientation === 'vertical') {
+    if (isVertical()) {
       const { top, height } = rect;
       let pos = Math.max(0, Math.min(e.clientY - top, height));
       const posRatio = 1 - pos / height;
@@ -128,14 +139,15 @@ const Slider: Component<SliderProps> = (props) => {
   };
 
   const resetHandlePercent = createMemo(() => {
+    if (props.min === props.max) return 100;
     if (props.dblClickResetValue === undefined) return undefined;
     const fixed = getFixedValue(props.dblClickResetValue);
-    return ((fixed - props.min) / (props.max - props.min)) * 100;
+    return toPercent(fixed);
   });
 
   const handleClickOutside = (e: MouseEvent) => {
     if (directInputMode() && labelRef && !labelRef.contains(e.target as Node)) {
-      update(Number(directInputRef.value));
+      update(getFixedValue(Number(directInputRef.value)));
       setDirectInputMode(false);
     }
   };
@@ -145,10 +157,10 @@ const Slider: Component<SliderProps> = (props) => {
   };
 
   const handleOnWheel = (e: WheelEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    e.stopImmediatePropagation();
     if (props.wheelSpin) {
+      e.preventDefault();
+      e.stopPropagation();
+      e.stopImmediatePropagation();
       const step = props.wheelStep ?? 1;
       const delta = e.deltaY < 0 ? step : -step;
       // 縦方向はホイールの方向と intuitive に一致: 上スクロール(negative deltaY) => 値増加
@@ -170,8 +182,8 @@ const Slider: Component<SliderProps> = (props) => {
   const renderResetHandle = () => {
     const percent = resetHandlePercent();
     if (percent === undefined) return null;
-    const style = props.orientation === 'vertical' ? { bottom: `${percent}%`, opacity: 0.5 } : { left: `${percent}%`, opacity: 0.5 };
-    return <div style={style} class={props.orientation === 'vertical' ? 'slider-handle-vertical' : 'slider-handle'} />;
+    const style = isVertical() ? { bottom: `${percent}%`, opacity: 0.5 } : { left: `${percent}%`, opacity: 0.5 };
+    return <div style={style} class={isVertical() ? 'slider-handle-vertical' : 'slider-handle'} />;
   };
 
   onMount(() => {
@@ -193,23 +205,32 @@ const Slider: Component<SliderProps> = (props) => {
       class='slider-label-container'
       onWheel={handleOnWheel}
       title={props.title}
-      style={{
-        width: props.labelWidth ? `${props.labelWidth}px` : undefined,
-        'min-width': props.labelWidth ? undefined : '42px',
-      }}
+      style={
+        isVertical()
+          ? {
+              height: props.labelWidth ? `${props.labelWidth}px` : undefined,
+              'min-height': props.labelWidth ? undefined : 'fit-content',
+            }
+          : {
+              width: props.labelWidth ? `${props.labelWidth}px` : undefined,
+              'min-height': props.labelWidth ? undefined : 'fit-content',
+            }
+      }
     >
       <Show
-        when={directInputMode()}
+        when={props.allowDirectInput && directInputMode()}
         fallback={
           <p
             class='slider-label'
             onClick={(e) => {
+              if (!props.allowDirectInput) return;
               e.preventDefault();
               e.stopPropagation();
               e.stopImmediatePropagation();
               setDirectInputMode(true);
-              directInputRef.select();
+              directInputRef?.select();
             }}
+            style={{ 'writing-mode': isVertical() ? 'vertical-rl' : undefined }}
           >
             {getFormattedValue(value())}
           </p>
@@ -224,12 +245,13 @@ const Slider: Component<SliderProps> = (props) => {
           onFocusOut={cancelDirectInput}
           onKeyDown={(e) => {
             if (e.key === 'Enter') {
-              update(Number(directInputRef.value));
+              update(getFixedValue(Number(directInputRef.value)));
               setDirectInputMode(false);
             }
           }}
           value={value()}
           type={'number'}
+          style={{ 'writing-mode': isVertical() ? 'vertical-rl' : undefined }}
         />
       </Show>
     </div>
@@ -237,7 +259,7 @@ const Slider: Component<SliderProps> = (props) => {
 
   return (
     <div
-      class='slider-root'
+      class={isVertical() ? 'slider-root-vertical' : 'slider-root'}
       style={{
         gap: props.labelGap ? `${props.labelGap}px` : '8px',
       }}
@@ -245,17 +267,17 @@ const Slider: Component<SliderProps> = (props) => {
       <Show when={props.labelMode === 'left'}>{labelArea}</Show>
 
       <div
-        class={props.orientation === 'vertical' ? 'slider-vertical' : 'slider'}
+        class={isVertical() ? 'slider-vertical' : 'slider'}
         ref={(el) => (sliderRef = el)}
         onPointerDown={handlePointerDown}
         onDblClick={handleDoubleClick}
         onClick={onLineClick}
       >
-        <div class={props.orientation === 'vertical' ? 'slider-line-hitbox-vertical' : 'slider-line-hitbox'} onWheel={handleOnWheel}>
-          <div class={props.orientation === 'vertical' ? 'slider-line-vertical' : 'slider-line'} />
+        <div class={isVertical() ? 'slider-line-hitbox-vertical' : 'slider-line-hitbox'} onWheel={handleOnWheel}>
+          <div class={isVertical() ? 'slider-line-vertical' : 'slider-line'} />
         </div>
         {renderResetHandle()}
-        {props.orientation === 'vertical' ? (
+        {isVertical() ? (
           <div style={{ bottom: `${percent()}%` }} class='slider-handle-vertical' />
         ) : (
           <div style={{ left: `${percent()}%` }} class='slider-handle' />
