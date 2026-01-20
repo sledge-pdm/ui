@@ -17,12 +17,21 @@ export const SparkLine: Component<SparkLineProps> = (props) => {
   const [values, setValues] = createSignal<(number | undefined)[]>(Array(props.length).fill(undefined));
   const lengthMult = () => props.lengthMult ?? 1;
 
-  createEffect(() => {
+  const initValues = () => {
     const newValues = props.values;
-    const paddedValues = Array(props.length - newValues.length)
-      .fill(undefined)
-      .concat(newValues);
-    setValues(paddedValues);
+    if (props.length > newValues.length) {
+      const paddedValues = Array(props.length - newValues.length)
+        .fill(undefined)
+        .concat(newValues);
+      // .slice(0, props.length);
+      setValues(paddedValues);
+    } else {
+      setValues(newValues.slice(0, props.length));
+    }
+  };
+
+  createEffect(() => {
+    initValues();
     updateLine();
   });
 
@@ -34,12 +43,7 @@ export const SparkLine: Component<SparkLineProps> = (props) => {
     canvas.style.height = `${props.height}px`;
     canvas.width = props.length * lengthMult();
     canvas.height = props.height;
-
-    const newValues = props.values;
-    const paddedValues = Array(props.length - newValues.length)
-      .fill(undefined)
-      .concat(newValues);
-    setValues(paddedValues);
+    initValues();
     updateLine();
   });
 

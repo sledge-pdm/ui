@@ -83,7 +83,9 @@ const ColorBox: Component<ColorBoxProps> = (props: ColorBoxProps) => {
               width: `${Math.round(size() / 3)}px`,
               height: `${Math.round(size() / 3)}px`,
             }}
-            onClick={() => {
+            onClick={(e) => {
+              e.stopPropagation();
+              e.stopImmediatePropagation();
               onColorClicked(colorRgba());
             }}
           />

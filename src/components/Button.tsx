@@ -1,4 +1,5 @@
 import { createSignal, type Component, type JSX } from 'solid-js';
+import type { DOMElement } from 'solid-js/jsx-runtime';
 
 // Button styles are already handled by global.css, no additional styles needed
 
@@ -6,6 +7,19 @@ interface ButtonProps extends JSX.ButtonHTMLAttributes<HTMLButtonElement> {
   key?: string | number;
   hoverContent?: string;
   hoverColor?: string;
+
+  onMouseEnter?: (
+    e: MouseEvent & {
+      currentTarget: HTMLButtonElement;
+      target: DOMElement;
+    }
+  ) => void;
+  onMouseLeave?: (
+    e: MouseEvent & {
+      currentTarget: HTMLButtonElement;
+      target: DOMElement;
+    }
+  ) => void;
 }
 
 const Button: Component<ButtonProps> = (props) => {
@@ -15,8 +29,14 @@ const Button: Component<ButtonProps> = (props) => {
     <button
       key={props.key}
       {...(props as any)}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseEnter={(e) => {
+        props.onMouseEnter?.(e);
+        setIsHovered(true);
+      }}
+      onMouseLeave={(e) => {
+        props.onMouseLeave?.(e);
+        setIsHovered(false);
+      }}
       style={{
         position: 'relative',
         ...(typeof props.style === 'object' ? props.style : {}),

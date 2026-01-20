@@ -33,8 +33,8 @@ interface Props<T extends string | number = string> {
 }
 
 const Dropdown = <T extends string | number>(p: Props<T>) => {
-  p.align = p.align ?? 'left';
-  p.appearance = p.appearance ?? 'emphasis';
+  const align = createMemo(() => p.align ?? 'left');
+  const appearance = createMemo(() => p.appearance ?? 'emphasis');
 
   let containerRef: HTMLDivElement | undefined;
   let menuRef: HTMLUListElement | undefined;
@@ -54,21 +54,31 @@ const Dropdown = <T extends string | number>(p: Props<T>) => {
   const getAdjustedLabel = (label?: string) => label?.padEnd(getLongestLabel());
 
   const toggle = () => {
-    setOpen(!open());
-    if (open()) decideDirection();
+    const afterOpen = open() ? false : true;
+    setOpen(afterOpen);
+    if (afterOpen) decideDirection();
   };
+
   const select = (option: DropdownOption<T>) => {
     p.onChange?.(option.value);
     setOpen(false);
   };
 
+  const isOutside = (target: EventTarget | null) => {
+    const node = target as Node | null;
+    if (!node) return true;
+    if (containerRef?.contains(node)) return false;
+    if (menuRef?.contains(node)) return false;
+    return true;
+  };
+
   const handleClickOutside = (e: MouseEvent) => {
-    if (containerRef && !containerRef.contains(e.target as Node)) {
+    if (isOutside(e.target)) {
       setOpen(false);
     }
   };
   const handleScrollOutside = (e: WheelEvent) => {
-    if (containerRef && !containerRef.contains(e.currentTarget as Node)) {
+    if (isOutside(e.target)) {
       setOpen(false);
     }
   };
@@ -117,7 +127,7 @@ const Dropdown = <T extends string | number>(p: Props<T>) => {
     const h = Math.min(menuRef.scrollHeight, 200) || 160;
 
     // 横位置
-    let x = p.align === 'left' ? trigger.left : trigger.right - w;
+    let x = align() === 'left' ? trigger.left : trigger.right - w;
     // 縦位置（dir に応じる）
     let y = dir() === 'down' ? trigger.bottom : trigger.top - h - 2;
 
@@ -164,7 +174,7 @@ const Dropdown = <T extends string | number>(p: Props<T>) => {
     p.onChange?.(next);
   };
 
-  const triggerButtonAdd = p.appearance === 'simple' ? 'dropdown-trigger-simple' : 'dropdown-trigger-emphasis';
+  const triggerButtonAdd = appearance() === 'simple' ? 'dropdown-trigger-simple' : 'dropdown-trigger-emphasis';
 
   return (
     <div
@@ -175,11 +185,11 @@ const Dropdown = <T extends string | number>(p: Props<T>) => {
       }}
       {...p.props}
       onWheel={(e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        e.stopImmediatePropagation();
         if (noItem() || p.disabled) return;
         if (p.wheelSpin === undefined || p.wheelSpin) {
+          e.preventDefault();
+          e.stopPropagation();
+          e.stopImmediatePropagation();
           spin(e.deltaY > 0);
         }
       }}
@@ -212,10 +222,11 @@ const Dropdown = <T extends string | number>(p: Props<T>) => {
       <Show when={open()}>
         <Portal>
           <MenuList
-            appearance={p.appearance}
+            appearance={appearance()}
             ref={menuRef}
             class={clsx('dropdown-menu', menuDirection[dir()])}
             options={menuListOptions()}
+            closeByOutsideClick={false}
             onWheel={(e) => {
               e.stopImmediatePropagation();
             }}

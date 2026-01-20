@@ -42,7 +42,7 @@ export const MenuList: Component<Props> = (props) => {
     }
   };
   const handleScrollOutside = (e: WheelEvent) => {
-    if (containerRef && !containerRef.contains(e.currentTarget as Node)) {
+    if (containerRef && !containerRef.contains(e.target as Node)) {
       props.onClose?.();
     }
   };
@@ -136,7 +136,7 @@ export const MenuList: Component<Props> = (props) => {
               </li>
             );
           } else {
-            return <div class='menu-divider' />;
+            return <li class='menu-divider' />;
           }
         }}
       </For>
