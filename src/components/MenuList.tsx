@@ -125,7 +125,7 @@ export const MenuList: Component<Props> = (props) => {
                   </div>
                 </Show>
                 <p
-                  class='menu-item-text'
+                  class='menu-label-text'
                   style={{
                     'font-family': option.fontFamily,
                     color: option.color ?? color.onBackground,

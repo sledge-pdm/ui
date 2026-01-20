@@ -1,74 +1,163 @@
-/* Font face definitions in CSS format */
+﻿/* Font face definitions in CSS format */
 @font-face {
   font-family: 'ZFB03';
   src: url('/assets/fonts/04B/04B_03__.ttf');
   font-display: block;
+  unicode-range: U+0000-00FF, U+2000-206F, U+20A0-20CF, U+2100-214F, U+2190-21FF, U+2500-257F, U+2580-259F, U+25A0-25FF; /* ASCII, Symbol */
+}
+
+@font-face {
+  font-family: 'ZFB03';
+  src: url('/assets/fonts/k12x8/k12x8.ttf');
+  font-display: block;
+  unicode-range: U+3000-30FF, U+31F0-31FF, U+3400-4DBF, U+4E00-9FFF, U+FF00-FFEF; /* CJK */
 }
 
 @font-face {
   font-family: 'ZFB03B';
   src: url('/assets/fonts/04B/04B_03B_.ttf');
   font-display: block;
+  unicode-range: U+0000-00FF, U+2000-206F, U+20A0-20CF, U+2100-214F, U+2190-21FF, U+2500-257F, U+2580-259F, U+25A0-25FF; /* ASCII, Symbol */
+}
+
+@font-face {
+  font-family: 'ZFB03B';
+  src: url('/assets/fonts/k12x8/k12x8.ttf');
+  font-display: block;
+  unicode-range: U+3000-30FF, U+31F0-31FF, U+3400-4DBF, U+4E00-9FFF, U+FF00-FFEF; /* CJK */
 }
 
 @font-face {
   font-family: 'ZFB08';
   src: url('/assets/fonts/04B/04B_08__.ttf');
   font-display: block;
+  unicode-range: U+0000-00FF, U+2000-206F, U+20A0-20CF, U+2100-214F, U+2190-21FF, U+2500-257F, U+2580-259F, U+25A0-25FF; /* ASCII, Symbol */
+}
+
+@font-face {
+  font-family: 'ZFB08';
+  src: url('/assets/fonts/k12x8/k12x8.ttf');
+  font-display: block;
+  unicode-range: U+3000-30FF, U+31F0-31FF, U+3400-4DBF, U+4E00-9FFF, U+FF00-FFEF; /* CJK */
 }
 
 @font-face {
   font-family: 'ZFB09';
   src: url('/assets/fonts/04B/04B_09__.ttf');
   font-display: block;
+  unicode-range: U+0000-00FF, U+2000-206F, U+20A0-20CF, U+2100-214F, U+2190-21FF, U+2500-257F, U+2580-259F, U+25A0-25FF; /* ASCII, Symbol */
+}
+
+@font-face {
+  font-family: 'ZFB09';
+  src: url('/assets/fonts/k12x8/k12x8.ttf');
+  font-display: block;
+  unicode-range: U+3000-30FF, U+31F0-31FF, U+3400-4DBF, U+4E00-9FFF, U+FF00-FFEF; /* CJK */
 }
 
 @font-face {
   font-family: 'ZFB11';
   src: url('/assets/fonts/04B/04B_11__.ttf');
   font-display: block;
+  unicode-range: U+0000-00FF, U+2000-206F, U+20A0-20CF, U+2100-214F, U+2190-21FF, U+2500-257F, U+2580-259F, U+25A0-25FF; /* ASCII, Symbol */
+}
+
+@font-face {
+  font-family: 'ZFB11';
+  src: url('/assets/fonts/k12x8/k12x8.ttf');
+  font-display: block;
+  unicode-range: U+3000-30FF, U+31F0-31FF, U+3400-4DBF, U+4E00-9FFF, U+FF00-FFEF; /* CJK */
 }
 
 @font-face {
   font-family: 'ZFB19';
   src: url('/assets/fonts/04B/04B_19__.ttf');
   font-display: block;
+  unicode-range: U+0000-00FF, U+2000-206F, U+20A0-20CF, U+2100-214F, U+2190-21FF, U+2500-257F, U+2580-259F, U+25A0-25FF; /* ASCII, Symbol */
+}
+
+@font-face {
+  font-family: 'ZFB19';
+  src: url('/assets/fonts/k12x8/k12x8.ttf');
+  font-display: block;
+  unicode-range: U+3000-30FF, U+31F0-31FF, U+3400-4DBF, U+4E00-9FFF, U+FF00-FFEF; /* CJK */
 }
 
 @font-face {
   font-family: 'ZFB20';
   src: url('/assets/fonts/04B/04B_20__.ttf');
   font-display: block;
+  unicode-range: U+0000-00FF, U+2000-206F, U+20A0-20CF, U+2100-214F, U+2190-21FF, U+2500-257F, U+2580-259F, U+25A0-25FF; /* ASCII, Symbol */
+}
+
+@font-face {
+  font-family: 'ZFB20';
+  src: url('/assets/fonts/k12x8/k12x8.ttf');
+  font-display: block;
+  unicode-range: U+3000-30FF, U+31F0-31FF, U+3400-4DBF, U+4E00-9FFF, U+FF00-FFEF; /* CJK */
 }
 
 @font-face {
   font-family: 'ZFB21';
   src: url('/assets/fonts/04B/04B_21__.ttf');
   font-display: block;
+  unicode-range: U+0000-00FF, U+2000-206F, U+20A0-20CF, U+2100-214F, U+2190-21FF, U+2500-257F, U+2580-259F, U+25A0-25FF; /* ASCII, Symbol */
+}
+
+@font-face {
+  font-family: 'ZFB21';
+  src: url('/assets/fonts/k12x8/k12x8.ttf');
+  font-display: block;
+  unicode-range: U+3000-30FF, U+31F0-31FF, U+3400-4DBF, U+4E00-9FFF, U+FF00-FFEF; /* CJK */
 }
 
 @font-face {
   font-family: 'ZFB24';
   src: url('/assets/fonts/04B/04B_24__.ttf');
   font-display: block;
+  unicode-range: U+0000-00FF, U+2000-206F, U+20A0-20CF, U+2100-214F, U+2190-21FF, U+2500-257F, U+2580-259F, U+25A0-25FF; /* ASCII, Symbol */
+}
+
+@font-face {
+  font-family: 'ZFB24';
+  src: url('/assets/fonts/k12x8/k12x8.ttf');
+  font-display: block;
+  unicode-range: U+3000-30FF, U+31F0-31FF, U+3400-4DBF, U+4E00-9FFF, U+FF00-FFEF; /* CJK */
 }
 
 @font-face {
   font-family: 'ZFB25';
   src: url('/assets/fonts/04B/04B_25__.ttf');
   font-display: block;
+  unicode-range: U+0000-00FF, U+2000-206F, U+20A0-20CF, U+2100-214F, U+2190-21FF, U+2500-257F, U+2580-259F, U+25A0-25FF; /* ASCII, Symbol */
+}
+
+@font-face {
+  font-family: 'ZFB25';
+  src: url('/assets/fonts/k8x12/k8x12.ttf');
+  font-display: block;
+  unicode-range: U+3000-30FF, U+31F0-31FF, U+3400-4DBF, U+4E00-9FFF, U+FF00-FFEF; /* CJK */
 }
 
 @font-face {
   font-family: 'ZFB30';
   src: url('/assets/fonts/04B/04B_30__.ttf');
   font-display: block;
+  unicode-range: U+0000-00FF, U+2000-206F, U+20A0-20CF, U+2100-214F, U+2190-21FF, U+2500-257F, U+2580-259F, U+25A0-25FF; /* ASCII, Symbol */
 }
 
 @font-face {
   font-family: 'ZFB31';
   src: url('/assets/fonts/04B/04B_31__.ttf');
   font-display: block;
+  unicode-range: U+0000-00FF, U+2000-206F, U+20A0-20CF, U+2100-214F, U+2190-21FF, U+2500-257F, U+2580-259F, U+25A0-25FF; /* ASCII, Symbol */
+}
+
+@font-face {
+  font-family: 'ZFB31';
+  src: url('/assets/fonts/k8x12/k8x12.ttf');
+  font-display: block;
+  unicode-range: U+3000-30FF, U+31F0-31FF, U+3400-4DBF, U+4E00-9FFF, U+FF00-FFEF; /* CJK */
 }
 
 @font-face {
@@ -81,21 +170,18 @@
   font-family: 'k8x12';
   src: url('/assets/fonts/k8x12/k8x12.ttf');
   font-display: block;
-  size-adjust: 75%;
 }
 
 @font-face {
   font-family: 'k8x12L';
   src: url('/assets/fonts/k8x12/k8x12L.ttf');
   font-display: block;
-  size-adjust: 75%;
 }
 
 @font-face {
   font-family: 'k8x12S';
   src: url('/assets/fonts/k8x12/k8x12S.ttf');
   font-display: block;
-  size-adjust: 75%;
 }
 
 @font-face {

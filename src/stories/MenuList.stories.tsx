@@ -12,10 +12,17 @@ type Story = StoryObj<typeof MenuList>;
 
 const options: MenuListOption[] = [
   { type: 'label', label: 'Actions' },
-  { type: 'divider', label: '' },
   { type: 'item', label: 'Add' },
   { type: 'item', label: 'Edit' },
   { type: 'item', label: 'Delete', color: 'var(--color-error)' },
+  { type: 'divider', label: '' },
+  { type: 'label', label: 'Actions 2' },
+  { type: 'item', label: 'Copy' },
+  { type: 'item', label: 'Cut' },
+  { type: 'item', label: 'Paste' },
+  { type: 'divider', label: '' },
+  { type: 'label', label: '日本語アクション' },
+  { type: 'item', label: 'にほんご' },
 ];
 
 export const Basic: Story = {

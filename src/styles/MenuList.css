@@ -49,11 +49,20 @@
   margin: 1px 4px;
 }
 
+.menu-label-text {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  min-width: 100%;
+  font-family: ZFB09;
+}
+
 .menu-item-text {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
   min-width: 100%;
+  font-family: ZFB08;
 }
 
 .menu-dir-down {

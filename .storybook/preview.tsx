@@ -5,6 +5,7 @@ import addonDocs from '@storybook/addon-docs';
 import { createJSXDecorator, definePreview } from 'storybook-solidjs-vite';
 import '../src/theme/global.css';
 import { applyTheme } from '../src/theme/Theme';
+import './preview.css';
 
 export const solidDecorator = createJSXDecorator((Story, context) => {
   applyTheme(context.globals.theme);

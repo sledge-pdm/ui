@@ -1,0 +1,14 @@
+﻿html,
+body {
+  width: 100%;
+  height: auto;
+  overflow-y: auto;
+}
+
+#root,
+#storybook-root,
+.sb-show-main,
+.sb-main-padded {
+  width: 100%;
+  height: auto;
+}
