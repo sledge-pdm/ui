@@ -15,6 +15,7 @@ interface SliderProps {
   floatSignificantDigits?: number;
   labelMode: LabelMode;
   labelWidth?: number;
+  labelGap?: number;
   customFormat?: (value: number) => string;
   allowDirectInput?: boolean;
   title?: string;
@@ -235,7 +236,12 @@ const Slider: Component<SliderProps> = (props) => {
   );
 
   return (
-    <div class='slider-root'>
+    <div
+      class='slider-root'
+      style={{
+        gap: props.labelGap ? `${props.labelGap}px` : '8px',
+      }}
+    >
       <Show when={props.labelMode === 'left'}>{labelArea}</Show>
 
       <div
