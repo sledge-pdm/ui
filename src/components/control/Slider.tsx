@@ -3,32 +3,38 @@ import '../../styles/Slider.css';
 import type { LabelMode } from '../../types';
 
 interface SliderProps {
-  min: number;
-  max: number;
-  defaultValue?: number;
-  value?: number;
-  dblClickResetValue?: number;
+  // style
   orientation?: 'horizontal' | 'vertical';
-  wheelSpin?: boolean;
-  wheelStep?: number;
-  allowFloat?: boolean;
-  floatSignificantDigits?: number;
   labelMode: LabelMode;
   labelWidth?: number;
   labelGap?: number;
-  customFormat?: (value: number) => string;
-  allowDirectInput?: boolean;
   title?: string;
+  customFormat?: (value: number) => string;
+  // values
+  value?: number;
+  defaultValue?: number;
+  min: number;
+  max: number;
+  allowFloat?: boolean;
+  floatSignificantDigits?: number;
+  // behaviour
+  allowButtons?: number;
+  allowDirectInput?: boolean;
+  dblClickResetValue?: number;
+  wheelSpin?: boolean;
+  wheelStep?: number;
+  // events
   onChange?: (newValue: number) => void;
   onDoubleClick?: () => void;
   onPointerDownOnValidArea?: (e: PointerEvent | MouseEvent) => boolean;
-  allowButtons?: number;
 }
 
 const Slider: Component<SliderProps> = (props) => {
   let labelRef: HTMLDivElement;
   let directInputRef: HTMLInputElement;
   let sliderRef: HTMLDivElement;
+  let sliderRect: DOMRect | undefined;
+  let isDragListening = false;
 
   const isVertical = createMemo<boolean>(() => props.orientation === 'vertical');
   const allowButtons = createMemo(() => props.allowButtons ?? 1);
@@ -42,13 +48,7 @@ const Slider: Component<SliderProps> = (props) => {
   });
 
   const getFormattedValue = (value: number): string => {
-    let formatted = `${value}`;
-    if (props.customFormat !== undefined) {
-      formatted = props.customFormat(value);
-    } else {
-      formatted = `${value}`;
-    }
-    return formatted;
+    return props.customFormat ? props.customFormat(value) : `${value}`;
   };
 
   const toPercent = (value: number) => {
@@ -73,33 +73,55 @@ const Slider: Component<SliderProps> = (props) => {
   };
 
   const handlePointerDown = (e: PointerEvent) => {
-    if (isAllowedClickButton(e) && onPointerDownOnValidArea(e)) setDrag(true);
-    else setDrag(false);
+    if (isAllowedClickButton(e) && onPointerDownOnValidArea(e)) {
+      setDrag(true);
+      sliderRect = sliderRef?.getBoundingClientRect();
+      if (!isDragListening) {
+        document.addEventListener('pointermove', handlePointerMove);
+        document.addEventListener('pointerup', cancelHandling);
+        document.addEventListener('pointercancel', cancelHandling);
+        isDragListening = true;
+      }
+    } else {
+      setDrag(false);
+      sliderRect = undefined;
+      if (isDragListening) {
+        document.removeEventListener('pointermove', handlePointerMove);
+        document.removeEventListener('pointerup', cancelHandling);
+        document.removeEventListener('pointercancel', cancelHandling);
+        isDragListening = false;
+      }
+    }
   };
 
   const handlePointerMove = (e: PointerEvent) => {
-    if (!sliderRef || !isDrag()) {
-      setDrag(false);
+    if (!sliderRef || !isDrag()) return;
+
+    const rect = sliderRect ?? sliderRef.getBoundingClientRect();
+    let raw: number;
+    if (isVertical()) {
+      const { top, height } = rect;
+      // 上を max, 下を min にする (一般的 UI)。逆にしたい場合は (1 - posRatio)
+      let pos = Math.max(0, Math.min(e.clientY - top, height));
+      const posRatio = 1 - pos / height; // 上=1 下=0
+      raw = props.min + posRatio * (props.max - props.min);
     } else {
-      const rect = sliderRef.getBoundingClientRect();
-      let raw: number;
-      if (isVertical()) {
-        const { top, height } = rect;
-        // 上を max, 下を min にする (一般的 UI)。逆にしたい場合は (1 - posRatio)
-        let pos = Math.max(0, Math.min(e.clientY - top, height));
-        const posRatio = 1 - pos / height; // 上=1 下=0
-        raw = props.min + posRatio * (props.max - props.min);
-      } else {
-        const { left, width } = rect;
-        let pos = Math.max(0, Math.min(e.clientX - left, width));
-        raw = props.min + (pos / width) * (props.max - props.min);
-      }
-      update(raw);
+      const { left, width } = rect;
+      let pos = Math.max(0, Math.min(e.clientX - left, width));
+      raw = props.min + (pos / width) * (props.max - props.min);
     }
+    update(raw);
   };
 
   const cancelHandling = () => {
     setDrag(false);
+    sliderRect = undefined;
+    if (isDragListening) {
+      document.removeEventListener('pointermove', handlePointerMove);
+      document.removeEventListener('pointerup', cancelHandling);
+      document.removeEventListener('pointercancel', cancelHandling);
+      isDragListening = false;
+    }
   };
 
   const onLineClick = (e: MouseEvent) => {
@@ -121,25 +143,28 @@ const Slider: Component<SliderProps> = (props) => {
     update(raw);
   };
 
-  const getFixedValue = (raw: number): number => {
-    let newValue = raw;
+  const getFixedValue = (raw: number | string): number => {
+    if (typeof raw === 'string') raw = Number(raw);
+    if (isNaN(raw)) return props.defaultValue ?? props.min;
+    let newValue;
     if (props.allowFloat) {
       if (props.floatSignificantDigits) {
+        // allowFloat+floatSignificantDigits: keep float + significant digits w/toFixed
         newValue = parseFloat(raw.toFixed(props.floatSignificantDigits));
       } else {
+        // allowFloat: keep float
         newValue = raw;
       }
     } else {
+      // round float to int
       newValue = Math.round(raw);
     }
-
+    // clamp value
     newValue = Math.max(props.min, Math.min(newValue, props.max));
-
     return newValue;
   };
 
   const resetHandlePercent = createMemo(() => {
-    if (props.min === props.max) return 100;
     if (props.dblClickResetValue === undefined) return undefined;
     const fixed = getFixedValue(props.dblClickResetValue);
     return toPercent(fixed);
@@ -147,7 +172,7 @@ const Slider: Component<SliderProps> = (props) => {
 
   const handleClickOutside = (e: MouseEvent) => {
     if (directInputMode() && labelRef && !labelRef.contains(e.target as Node)) {
-      update(getFixedValue(Number(directInputRef.value)));
+      update(getFixedValue(directInputRef.value));
       setDirectInputMode(false);
     }
   };
@@ -188,15 +213,15 @@ const Slider: Component<SliderProps> = (props) => {
 
   onMount(() => {
     document.addEventListener('click', handleClickOutside);
-    document.addEventListener('pointermove', handlePointerMove);
-    document.addEventListener('pointerup', cancelHandling);
-    document.addEventListener('pointercancel', cancelHandling);
   });
   onCleanup(() => {
     document.removeEventListener('click', handleClickOutside);
-    document.removeEventListener('pointermove', handlePointerMove);
-    document.removeEventListener('pointerup', cancelHandling);
-    document.removeEventListener('pointercancel', cancelHandling);
+    if (isDragListening) {
+      document.removeEventListener('pointermove', handlePointerMove);
+      document.removeEventListener('pointerup', cancelHandling);
+      document.removeEventListener('pointercancel', cancelHandling);
+      isDragListening = false;
+    }
   });
 
   const labelArea = (
@@ -245,7 +270,7 @@ const Slider: Component<SliderProps> = (props) => {
           onFocusOut={cancelDirectInput}
           onKeyDown={(e) => {
             if (e.key === 'Enter') {
-              update(getFixedValue(Number(directInputRef.value)));
+              update(getFixedValue(directInputRef.value));
               setDirectInputMode(false);
             }
           }}
