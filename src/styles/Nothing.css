@@ -1,0 +1,11 @@
+.nothing-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.nothing-text {
+  font-size: 8px;
+  color: var(--color-muted);
+}

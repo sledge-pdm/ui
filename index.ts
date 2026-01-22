@@ -10,6 +10,7 @@ export { default as ToggleSwitch } from './src/components/control/ToggleSwitch';
 export { default as Icon } from './src/components/Icon';
 export { default as Light } from './src/components/Light';
 export { MenuList, type MenuListOption } from './src/components/MenuList';
+export { default as Nothing } from './src/components/Nothing';
 export { SparkLine } from './src/components/SparkLine';
 export * from './src/config/components';
 export * from './src/config/path';

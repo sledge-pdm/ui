@@ -3,6 +3,7 @@ import { type Component, For, type JSX, onCleanup, onMount, Show } from 'solid-j
 import '../styles/MenuList.css';
 import { color } from '../theme/vars';
 import Icon from './Icon';
+import Nothing from './Nothing';
 
 const menuDirection = {
   down: 'menu-dir-down',
@@ -83,7 +84,7 @@ export const MenuList: Component<Props> = (props) => {
         e.stopImmediatePropagation();
       }}
     >
-      <For each={props.options} fallback={<p>no items</p>}>
+      <For each={props.options} fallback={<Nothing>no items</Nothing>}>
         {(option) => {
           if (option.type === 'item') {
             return (

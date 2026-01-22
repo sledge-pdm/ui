@@ -1,14 +1,45 @@
-[23:03:47.548] [INFO] storybook v10.1.10
-[23:03:48.368] [DEBUG] Getting package.json info for C:/Users/innsb/Documents/sledge-pdm/packages/ui/package.json...
-[23:03:48.969] [ERROR] [38;2;241;97;97mError: You have both a "config.js" and a "preview.js", remove the "config.js" file from your configDir (.\.storybook\config)[39m
-    at loadPreviewOrConfigFile (file:///C:/Users/innsb/Documents/sledge-pdm/packages/ui/node_modules/.pnpm/storybook@10.1.10_@testing-_fd7f2e665df58fe994c152c374705d85/node_modules/storybook/dist/_node-chunks/chunk-LLCTWVOB.js:11974:11)
-    at Object.experimental_serverChannel (file:///C:/Users/innsb/Documents/sledge-pdm/packages/ui/node_modules/.pnpm/@storybook+addon-vitest@10._dfbe2c36237da87d9b4664b0ae04ccab/node_modules/@storybook/addon-vitest/dist/preset.js:305:65)
-    at async storybookDevServer (file:///C:/Users/innsb/Documents/sledge-pdm/packages/ui/node_modules/.pnpm/storybook@10.1.10_@testing-_fd7f2e665df58fe994c152c374705d85/node_modules/storybook/dist/core-server/index.js:6781:147)
-    at async buildOrThrow (file:///C:/Users/innsb/Documents/sledge-pdm/packages/ui/node_modules/.pnpm/storybook@10.1.10_@testing-_fd7f2e665df58fe994c152c374705d85/node_modules/storybook/dist/core-server/index.js:5555:12)
-    at async buildDevStandalone (file:///C:/Users/innsb/Documents/sledge-pdm/packages/ui/node_modules/.pnpm/storybook@10.1.10_@testing-_fd7f2e665df58fe994c152c374705d85/node_modules/storybook/dist/core-server/index.js:7208:66)
-    at async withTelemetry (file:///C:/Users/innsb/Documents/sledge-pdm/packages/ui/node_modules/.pnpm/storybook@10.1.10_@testing-_fd7f2e665df58fe994c152c374705d85/node_modules/storybook/dist/_node-chunks/chunk-PGCRO4IZ.js:209:12)
-    at async dev (file:///C:/Users/innsb/Documents/sledge-pdm/packages/ui/node_modules/.pnpm/storybook@10.1.10_@testing-_fd7f2e665df58fe994c152c374705d85/node_modules/storybook/dist/bin/core.js:2734:3)
-    at async _Command.<anonymous> (file:///C:/Users/innsb/Documents/sledge-pdm/packages/ui/node_modules/.pnpm/storybook@10.1.10_@testing-_fd7f2e665df58fe994c152c374705d85/node_modules/storybook/dist/bin/core.js:2801:92)
-[23:03:48.972] [WARN] Broken build, fix the error above.
-You may need to refresh the browser.
-[23:04:04.337] [PROMPT] Would you like to send anonymous crash reports to improve Storybook and fix bugs faster? {"choice":false}
+[11:03:06.436] [INFO] Storybook upgrade - v10.2.0
+[11:03:06.438] [INFO] detect-projects-spinner-start: Detecting projects...
+[11:03:06.439] [DEBUG] Finding Storybook projects...
+[11:03:06.853] [DEBUG] Found 1 Storybook projects
+[11:03:06.860] [INFO] detect-projects-spinner: Detecting projects: 1 projects
+[11:03:06.861] [DEBUG] Getting Storybook data...
+[11:03:06.861] [DEBUG] Getting Storybook info...
+[11:03:07.455] [DEBUG] Loading main config...
+[11:03:07.455] [DEBUG] Getting stories paths...
+[11:03:07.485] [DEBUG] Getting package manager...
+[11:03:08.486] [DEBUG] Getting package.json info for C:/Densan/sledge-pdm/packages/ui/package.json...
+[11:03:08.486] [DEBUG] Getting Storybook version...
+[11:03:08.488] [DEBUG] Detecting CSF factory usage...
+[11:03:08.501] [DEBUG] C:/Densan/sledge-pdm/packages/ui/.storybook - Validating before version... 10.1.11
+[11:03:08.501] [DEBUG] C:/Densan/sledge-pdm/packages/ui/.storybook - Validating upgrade compatibility...
+[11:03:08.501] [DEBUG] C:/Densan/sledge-pdm/packages/ui/.storybook - Fetching NPM version information...
+[11:03:08.501] [DEBUG] Getting CLI versions from NPM for storybook...
+[11:03:08.501] [DEBUG] Executing command: pnpm info storybook version
+[11:03:08.529] [DEBUG] Getting CLI versions from NPM for storybook@next...
+[11:03:08.529] [DEBUG] Executing command: pnpm info storybook@next version
+[11:03:08.598] [DEBUG] TypeError: Invalid version. Must be a string. Got type "object".
+[11:03:08.599] [INFO] detect-projects-spinner-stop: 1 project detected
+[11:03:08.599] [DEBUG] Found 0 valid projects and 1 error projects
+[11:03:08.600] [ERROR] Failed to get projects
+[11:03:08.601] [ERROR] [38;2;241;97;97mError: ❌ Storybook found errors while collecting data for the following projects:
+C:/Densan/sledge-pdm/packages/ui/.storybook:
+TypeError: Invalid version. Must be a string. Got type "object".
+    at new _SemVer (file:///C:/Users/n4505/AppData/Local/npm-cache/_npx/d9767c5d2d3183ba/node_modules/@storybook/cli/dist/_node-chunks/chunk-4HDDTOSH.js:161:17)
+    at compare (file:///C:/Users/n4505/AppData/Local/npm-cache/_npx/d9767c5d2d3183ba/node_modules/@storybook/cli/dist/_node-chunks/chunk-4HDDTOSH.js:439:92)
+    at lt (file:///C:/Users/n4505/AppData/Local/npm-cache/_npx/d9767c5d2d3183ba/node_modules/@storybook/cli/dist/_node-chunks/chunk-4HDDTOSH.js:505:60)
+    at processProject (file:///C:/Users/n4505/AppData/Local/npm-cache/_npx/d9767c5d2d3183ba/node_modules/@storybook/cli/dist/_node-chunks/chunk-I7ZAU7I4.js:311:46)
+Please fix the errors and run the upgrade command again.[39m
+    at getProjects (file:///C:/Users/n4505/AppData/Local/npm-cache/_npx/d9767c5d2d3183ba/node_modules/@storybook/cli/dist/_node-chunks/chunk-I7ZAU7I4.js:477:13)
+    at async upgrade (file:///C:/Users/n4505/AppData/Local/npm-cache/_npx/d9767c5d2d3183ba/node_modules/@storybook/cli/dist/_node-chunks/run-MQMOBNP4.js:9387:24)
+    at async file:///C:/Users/n4505/AppData/Local/npm-cache/_npx/d9767c5d2d3183ba/node_modules/@storybook/cli/dist/_node-chunks/run-MQMOBNP4.js:9585:70
+    at async withTelemetry (file:///C:/Users/n4505/AppData/Local/npm-cache/_npx/d9767c5d2d3183ba/node_modules/storybook/dist/_node-chunks/chunk-5T2PCIM6.js:218:12)
+    at async Command.<anonymous> (file:///C:/Users/n4505/AppData/Local/npm-cache/_npx/d9767c5d2d3183ba/node_modules/@storybook/cli/dist/_node-chunks/run-MQMOBNP4.js:9581:3)
+[11:03:17.893] [ERROR] Error: ❌ Storybook found errors while collecting data for the following projects:
+C:/Densan/sledge-pdm/packages/ui/.storybook:
+TypeError: Invalid version. Must be a string. Got type "object".
+    at new _SemVer (file:///C:/Users/n4505/AppData/Local/npm-cache/_npx/d9767c5d2d3183ba/node_modules/@storybook/cli/dist/_node-chunks/chunk-4HDDTOSH.js:161:17)
+    at compare (file:///C:/Users/n4505/AppData/Local/npm-cache/_npx/d9767c5d2d3183ba/node_modules/@storybook/cli/dist/_node-chunks/chunk-4HDDTOSH.js:439:92)
+    at lt (file:///C:/Users/n4505/AppData/Local/npm-cache/_npx/d9767c5d2d3183ba/node_modules/@storybook/cli/dist/_node-chunks/chunk-4HDDTOSH.js:505:60)
+    at processProject (file:///C:/Users/n4505/AppData/Local/npm-cache/_npx/d9767c5d2d3183ba/node_modules/@storybook/cli/dist/_node-chunks/chunk-I7ZAU7I4.js:311:46)
+Please fix the errors and run the upgrade command again.
