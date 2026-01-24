@@ -3,6 +3,7 @@
   flex-direction: column;
   position: absolute;
   top: 100%;
+  padding: 2px 0px;
   z-index: var(--zindex-dropdown-menu);
   background-color: var(--color-background);
   overflow-y: auto;
@@ -37,7 +38,7 @@
   display: flex;
   flex-direction: row;
   box-sizing: border-box;
-  padding: 6px 8px 6px 8px;
+  padding: 8px 8px 6px 8px;
   overflow: hidden;
   gap: 12px;
   opacity: 0.8;
@@ -46,7 +47,7 @@
 .menu-divider {
   height: 1px;
   background-color: var(--color-border);
-  margin: 1px 4px;
+  margin: 2px 4px;
 }
 
 .menu-label-text {
