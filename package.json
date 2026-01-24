@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@sledge-pdm/core": "^1.2.1",
-    "solid-js": "^1.9.10"
+    "solid-js": "^1.9.11"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^5.0.0",
@@ -20,11 +20,11 @@
     "@storybook/addon-onboarding": "^10.2.0",
     "@storybook/addon-vitest": "^10.2.0",
     "@types/node": "^25.0.10",
-    "@vitest/browser": "^4.0.17",
-    "@vitest/browser-playwright": "^4.0.17",
-    "@vitest/coverage-v8": "^4.0.17",
+    "@vitest/browser": "^4.0.18",
+    "@vitest/browser-playwright": "^4.0.18",
+    "@vitest/coverage-v8": "^4.0.18",
     "css-loader": "^7.1.2",
-    "playwright": "^1.57.0",
+    "playwright": "^1.58.0",
     "prettier": "^3.8.1",
     "prettier-plugin-organize-imports": "^4.3.0",
     "storybook": "^10.2.0",
@@ -35,14 +35,15 @@
     "vite-plugin-solid": "^2.11.10",
     "vite-plugin-top-level-await": "^1.6.0",
     "vite-plugin-wasm": "^3.5.0",
-    "vitest": "^4.0.17"
+    "vitest": "^4.0.18"
   },
   "scripts": {
     "build": "storybook build",
     "storybook": "storybook dev -p 6006",
     "prettier": "prettier --write . --config .prettierrc",
     "format": "pnpm prettier",
-    "test": "pnpm vitest"
+    "test": "pnpm vitest",
+    "tsc": "pnpm exec tsc --noEmit --skipLibCheck"
   },
   "publishConfig": {
     "access": "public",

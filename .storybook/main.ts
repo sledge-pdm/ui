@@ -6,5 +6,5 @@ export default defineMain({
     options: {},
   },
   addons: ['@storybook/addon-onboarding', '@storybook/addon-docs', '@storybook/addon-a11y', '@storybook/addon-links', '@storybook/addon-vitest'],
-  stories: ['../src/stories/**/*.mdx', '../src/stories/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+  stories: ['../src/stories/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
 });
