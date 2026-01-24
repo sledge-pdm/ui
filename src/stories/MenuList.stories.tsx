@@ -44,3 +44,31 @@ export const Basic: Story = {
     );
   },
 };
+
+const optionsLong: MenuListOption[] = [
+  { type: 'label', label: 'Actions' },
+  { type: 'item', label: 'Add' },
+  { type: 'item', label: 'Edit' },
+  { type: 'label', label: 'HyperLongLabelThatExceedsWidthLimit' },
+  { type: 'item', label: 'ThisIsTooLongItemThatContainsTextWhichMayOverflowLayoutWidthYes' },
+  { type: 'item', icon: '/assets/icons/actions/image.png', label: 'ThisIsTooLongItemWithIconThatContainsTextWhichMayOverflowLayoutWidth' },
+];
+export const LongText: Story = {
+  render: () => {
+    const [message, setMessage] = createSignal('Select an item');
+    const withActions = optionsLong.map((opt) =>
+      opt.type === 'item'
+        ? {
+            ...opt,
+            onSelect: () => setMessage(`Selected: ${opt.label}`),
+          }
+        : opt
+    );
+    return (
+      <div style={{ display: 'flex', gap: '16px', 'align-items': 'flex-start' }}>
+        <MenuList options={withActions} closeByOutsideClick={false} style={{ position: 'relative', top: '0', left: '0', 'max-width': '200px' }} />
+        <p style={{ 'min-width': '160px' }}>{message()}</p>
+      </div>
+    );
+  },
+};

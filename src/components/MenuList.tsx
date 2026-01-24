@@ -1,5 +1,5 @@
 import { clsx } from '@sledge-pdm/core';
-import { type Component, For, type JSX, onCleanup, onMount, Show } from 'solid-js';
+import { type Component, For, type JSX, onMount, Show } from 'solid-js';
 import '../styles/MenuList.css';
 import { color } from '../theme/vars';
 import Icon from './Icon';
@@ -57,13 +57,14 @@ export const MenuList: Component<Props> = (props) => {
       document.addEventListener('mousedown', handleClickOutside);
       document.addEventListener('wheel', handleScrollOutside);
     }
-  });
-  onCleanup(() => {
-    document.removeEventListener('keydown', handleKeydown);
-    if (props.closeByOutsideClick !== false) {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('wheel', handleScrollOutside);
-    }
+
+    return () => {
+      document.removeEventListener('keydown', handleKeydown);
+      if (props.closeByOutsideClick !== false) {
+        document.removeEventListener('mousedown', handleClickOutside);
+        document.removeEventListener('wheel', handleScrollOutside);
+      }
+    };
   });
 
   const appearance = props.appearance ?? 'emphasis';
@@ -91,7 +92,7 @@ export const MenuList: Component<Props> = (props) => {
               <li
                 class='menu-item'
                 role='option'
-                title={option.title}
+                title={option.title ?? option.label}
                 style={{
                   'pointer-events': option.disabled ? 'none' : 'all',
                   opacity: option.disabled ? 0.5 : 1,
@@ -119,7 +120,7 @@ export const MenuList: Component<Props> = (props) => {
             );
           } else if (option.type === 'label') {
             return (
-              <li class='menu-label' role='option' title={option.title}>
+              <li class='menu-label' role='option' title={option.title ?? option.label}>
                 <Show when={option.icon}>
                   <div>
                     <Icon src={option.icon!} base={8} color={option.color ?? color.onBackground} />

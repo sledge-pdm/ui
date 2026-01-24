@@ -62,7 +62,7 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-  min-width: 100%;
+  flex-grow: 1;
   font-family: ZFB08;
 }
 
