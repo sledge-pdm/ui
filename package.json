@@ -1,6 +1,6 @@
 {
   "name": "@sledge-pdm/ui",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "private": false,
   "type": "module",
   "sideEffects": true,
@@ -9,7 +9,7 @@
     "./global.css": "./src/theme/global.css"
   },
   "dependencies": {
-    "@sledge-pdm/core": "^1.2.1",
+    "@sledge-pdm/core": "^1.2.2",
     "solid-js": "^1.9.11"
   },
   "devDependencies": {

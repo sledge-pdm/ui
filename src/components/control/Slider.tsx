@@ -25,6 +25,7 @@ interface SliderProps {
   wheelStep?: number;
   // events
   onChange?: (newValue: number) => void;
+  onRecordableAction?: (value: number) => void;
   onDoubleClick?: () => void;
   onPointerDownOnValidArea?: (e: PointerEvent | MouseEvent) => boolean;
 }
@@ -56,7 +57,7 @@ const Slider: Component<SliderProps> = (props) => {
     return ((value - props.min) / (props.max - props.min)) * 100;
   };
 
-  const [isDrag, setDrag] = createSignal(false);
+  const [isDrag, setDrag] = createSignal<boolean | undefined>(undefined);
   const percent = createMemo(() => toPercent(value()));
 
   const update = (newValue: number) => {
@@ -78,8 +79,8 @@ const Slider: Component<SliderProps> = (props) => {
       sliderRect = sliderRef?.getBoundingClientRect();
       if (!isDragListening) {
         document.addEventListener('pointermove', handlePointerMove);
-        document.addEventListener('pointerup', cancelHandling);
-        document.addEventListener('pointercancel', cancelHandling);
+        document.addEventListener('pointerup', handlePointerUp);
+        document.addEventListener('pointercancel', quitHandling);
         isDragListening = true;
       }
     } else {
@@ -87,15 +88,15 @@ const Slider: Component<SliderProps> = (props) => {
       sliderRect = undefined;
       if (isDragListening) {
         document.removeEventListener('pointermove', handlePointerMove);
-        document.removeEventListener('pointerup', cancelHandling);
-        document.removeEventListener('pointercancel', cancelHandling);
+        document.removeEventListener('pointerup', handlePointerUp);
+        document.removeEventListener('pointercancel', quitHandling);
         isDragListening = false;
       }
     }
   };
 
-  const handlePointerMove = (e: PointerEvent) => {
-    if (!sliderRef || !isDrag()) return;
+  const calculateValue = (e: PointerEvent): number => {
+    if (!sliderRef) return props.defaultValue ?? props.min;
 
     const rect = sliderRect ?? sliderRef.getBoundingClientRect();
     let raw: number;
@@ -110,16 +111,29 @@ const Slider: Component<SliderProps> = (props) => {
       let pos = Math.max(0, Math.min(e.clientX - left, width));
       raw = props.min + (pos / width) * (props.max - props.min);
     }
-    update(raw);
+    return raw;
   };
 
-  const cancelHandling = () => {
+  const handlePointerMove = (e: PointerEvent) => {
+    if (!isDrag()) return;
+    update(calculateValue(e));
+  };
+
+  const handlePointerUp = (e: PointerEvent) => {
+    if (isDrag()) {
+      update(calculateValue(e));
+      props.onRecordableAction?.(value());
+    }
+    quitHandling();
+  };
+
+  const quitHandling = () => {
     setDrag(false);
     sliderRect = undefined;
     if (isDragListening) {
       document.removeEventListener('pointermove', handlePointerMove);
-      document.removeEventListener('pointerup', cancelHandling);
-      document.removeEventListener('pointercancel', cancelHandling);
+      document.removeEventListener('pointerup', handlePointerUp);
+      document.removeEventListener('pointercancel', quitHandling);
       isDragListening = false;
     }
   };
@@ -191,6 +205,7 @@ const Slider: Component<SliderProps> = (props) => {
       // 縦方向はホイールの方向と intuitive に一致: 上スクロール(negative deltaY) => 値増加
       const newValue = value() + delta;
       update(newValue);
+      if (delta !== 0) props.onRecordableAction?.(newValue);
     }
   };
 
@@ -218,8 +233,8 @@ const Slider: Component<SliderProps> = (props) => {
     document.removeEventListener('click', handleClickOutside);
     if (isDragListening) {
       document.removeEventListener('pointermove', handlePointerMove);
-      document.removeEventListener('pointerup', cancelHandling);
-      document.removeEventListener('pointercancel', cancelHandling);
+      document.removeEventListener('pointerup', handlePointerUp);
+      document.removeEventListener('pointercancel', quitHandling);
       isDragListening = false;
     }
   });
@@ -270,7 +285,9 @@ const Slider: Component<SliderProps> = (props) => {
           onFocusOut={cancelDirectInput}
           onKeyDown={(e) => {
             if (e.key === 'Enter') {
-              update(getFixedValue(directInputRef.value));
+              const value = getFixedValue(directInputRef.value);
+              update(value);
+              props.onRecordableAction?.(value);
               setDirectInputMode(false);
             }
           }}
