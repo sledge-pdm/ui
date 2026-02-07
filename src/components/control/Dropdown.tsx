@@ -134,13 +134,14 @@ const Dropdown = <T extends string | number>(p: Props<T>) => {
     const clamped = clampToViewport(x, y, w, h);
     setCoords(clamped);
   };
+  const onResize = () => open() && adjustPosition();
 
   onMount(() => {
-    const onResize = () => open() && adjustPosition();
     window.addEventListener('resize', onResize, { passive: true });
-    return () => {
-      window.removeEventListener('resize', onResize as any);
-    };
+  });
+
+  onCleanup(() => {
+    window.removeEventListener('resize', onResize);
   });
 
   // open 変更時や dir 判定後に位置を更新
