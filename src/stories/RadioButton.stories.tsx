@@ -21,3 +21,27 @@ export const Group: Story = {
     );
   },
 };
+
+export const GroupLabelRight: Story = {
+  render: () => {
+    const [selected, setSelected] = createSignal<'a' | 'b'>('a');
+    return (
+      <div style={{ display: 'flex', gap: '12px' }}>
+        <RadioButton
+          name='radio-group'
+          labelMode='right'
+          label='Option A'
+          value={selected() === 'a'}
+          onChange={(checked) => checked && setSelected('a')}
+        />
+        <RadioButton
+          name='radio-group'
+          labelMode='right'
+          label='Option B'
+          value={selected() === 'b'}
+          onChange={(checked) => checked && setSelected('b')}
+        />
+      </div>
+    );
+  },
+};
