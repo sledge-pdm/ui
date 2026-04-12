@@ -3,7 +3,6 @@
     "verbatimModuleSyntax": true,
     "esModuleInterop": true,
     "jsxImportSource": "solid-js",
-    "baseUrl": ".",
     "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "bundler",

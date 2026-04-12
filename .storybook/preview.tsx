@@ -1,7 +1,5 @@
 /** @jsxRuntime automatic */
 /** @jsxImportSource solid-js */
-import addonA11y from '@storybook/addon-a11y';
-import addonDocs from '@storybook/addon-docs';
 import { createJSXDecorator, definePreview } from 'storybook-solidjs-vite';
 import '../src/theme/global.css';
 import { applyTheme } from '../src/theme/Theme';
@@ -17,7 +15,7 @@ export const solidDecorator = createJSXDecorator((Story, context) => {
 });
 
 export default definePreview({
-  addons: [addonDocs(), addonA11y()],
+  addons: [],
   parameters: {
     // automatically create action args for all props that start with 'on'
     actions: {
@@ -29,15 +27,7 @@ export default definePreview({
         date: /Date$/i,
       },
     },
-    a11y: {
-      // 'todo' - show a11y violations in the test UI only
-      // 'error' - fail CI on a11y violations
-      // 'off' - skip a11y checks entirely
-      test: 'todo',
-    },
   },
-  // All components will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
-  // tags: ['autodocs'],
   globalTypes: {
     theme: {
       name: 'Theme',

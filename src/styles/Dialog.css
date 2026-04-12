@@ -1,0 +1,67 @@
+.dialog-root {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  width: max-content;
+  border: 1px solid var(--color-border);
+  border-radius: 2px;
+  touch-action: none;
+  user-select: none;
+}
+
+.dialog-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: var(--color-background);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.dialog-titlebar {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  padding: 4px;
+  border-bottom: 1px solid var(--color-border);
+  touch-action: none;
+  user-select: none;
+  cursor: grab;
+}
+
+.dialog-titlebar:active {
+  cursor: grabbing;
+}
+
+.dialog-title {
+  min-height: 1em;
+  color: var(--color-muted);
+  pointer-events: none;
+  user-select: none;
+}
+
+.dialog-titlebar-spacer {
+  flex-grow: 1;
+}
+
+.dialog-close-btn {
+  cursor: pointer;
+  padding: 2px;
+  position: relative;
+  font-size: var(--text-sm);
+  line-height: 1;
+}
+
+.dialog-content {
+  position: relative;
+}
+
+.dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: var(--color-overlay);
+}
