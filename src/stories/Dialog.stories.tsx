@@ -25,12 +25,58 @@ export const WithClose: Story = {
   render: () => {
     const [open, setOpen] = createSignal(true);
     return (
-      <div>
+      <div
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          display: 'flex',
+          'flex-direction': 'column',
+          width: '100%',
+          height: '100%',
+          'align-items': 'center',
+          'justify-content': 'center',
+          'background-color': 'var(--color-on-background)',
+        }}
+      >
         <Show when={!open()}>
           <Button onClick={() => setOpen(true)}>Reopen</Button>
         </Show>
         <Show when={open()}>
           <Dialog title='Dialog' onClose={() => setOpen(false)}>
+            <div style={{ padding: '8px' }}>
+              <p>Click × to close.</p>
+            </div>
+          </Dialog>
+        </Show>
+      </div>
+    );
+  },
+};
+
+export const WithCloseSemiTransparent: Story = {
+  render: () => {
+    const [open, setOpen] = createSignal(true);
+    return (
+      <div
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          display: 'flex',
+          'flex-direction': 'column',
+          width: '100%',
+          height: '100%',
+          'align-items': 'center',
+          'justify-content': 'center',
+          'background-color': 'var(--color-on-background)',
+        }}
+      >
+        <Show when={!open()}>
+          <Button onClick={() => setOpen(true)}>Reopen</Button>
+        </Show>
+        <Show when={open()}>
+          <Dialog title='Dialog' backgroundOpacity={0.4} onClose={() => setOpen(false)}>
             <div style={{ padding: '8px' }}>
               <p>Click × to close.</p>
             </div>

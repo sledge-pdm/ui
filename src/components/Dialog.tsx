@@ -7,6 +7,7 @@ export interface DialogProps {
   title?: string;
   zIndex?: number;
   modal?: boolean;
+  backgroundOpacity?: number;
   initialPosition?: Vec2;
   onClose?: () => void;
   children: JSX.Element;
@@ -100,7 +101,7 @@ const Dialog: Component<DialogProps> = (props) => {
           'z-index': zIndex(),
         }}
       >
-        <div class='dialog-background' />
+        <div class='dialog-background' style={{ opacity: props.backgroundOpacity ?? 1 }} />
         <div class='dialog-titlebar' onPointerDown={onTitlebarPointerDown}>
           <span class='dialog-title'>{props.title}</span>
           <div class='dialog-titlebar-spacer' />
