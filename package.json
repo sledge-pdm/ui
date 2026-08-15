@@ -9,7 +9,7 @@
     "./global.css": "./src/theme/global.css"
   },
   "dependencies": {
-    "@sledge-pdm/core": "^1.2.6",
+    "@sledge-pdm/core": "^1.2.7",
     "solid-js": "^1.9.12"
   },
   "devDependencies": {
