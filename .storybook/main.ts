@@ -5,6 +5,6 @@ export default defineMain({
     name: 'storybook-solidjs-vite',
     options: {},
   },
-  addons: ['@storybook/addon-onboarding', '@storybook/addon-docs', '@storybook/addon-a11y', '@storybook/addon-links', '@storybook/addon-vitest'],
+  // addons: ['@storybook/addon-onboarding', '@storybook/addon-docs', '@storybook/addon-a11y', '@storybook/addon-links', '@storybook/addon-vitest'],
   stories: ['../src/stories/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
 });
