@@ -17,6 +17,8 @@ export const color = {
   selectionFill: 'var(--color-selection-fill)',
   border: 'var(--color-border)',
   borderSecondary: 'var(--color-border-secondary)',
+  shadowTopLight: 'var(--color-shadow-top-light)',
+  shadowBottomShadow: 'var(--color-shadow-bottom-shadow)',
   accent: 'var(--color-accent)',
   active: 'var(--color-active)',
   enabled: 'var(--color-enabled)',
