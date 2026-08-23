@@ -18,6 +18,9 @@ importers:
       '@chromatic-com/storybook':
         specifier: ^5.1.1
         version: 5.1.1(storybook@10.3.5(@testing-library/dom@10.4.0)(prettier@3.8.2)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))
+      '@storybook/addon-a11y':
+        specifier: ^10.3.5
+        version: 10.3.5(storybook@10.3.5(@testing-library/dom@10.4.0)(prettier@3.8.2)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))
       '@storybook/addon-vitest':
         specifier: ^10.3.5
         version: 10.3.5(@vitest/browser-playwright@4.1.4)(@vitest/browser@4.1.4)(@vitest/runner@4.1.4)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(storybook@10.3.5(@testing-library/dom@10.4.0)(prettier@3.8.2)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(vitest@4.1.4)
@@ -653,6 +656,11 @@ packages:
   '@standard-schema/spec@1.1.0':
     resolution: {integrity: sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w==}
 
+  '@storybook/addon-a11y@10.3.5':
+    resolution: {integrity: sha512-5k6lpgfIeLxvNhE8v3wEzdiu73ONKjF4gmH1AHvfqYd8kIVzQJai0KCDxgvqNncXHQhIWkaf1fg6+9hKaYJyaw==}
+    peerDependencies:
+      storybook: ^10.3.5
+
   '@storybook/addon-vitest@10.3.5':
     resolution: {integrity: sha512-PQDeeMwoF55kvzlhFqVKOryBJskkVk71AbDh7F0y8PdRRxlGbTvIUkKXktHZWBdESo0dV6BkeVxGQ4ZpiFxirg==}
     peerDependencies:
@@ -935,6 +943,10 @@ packages:
 
   ast-v8-to-istanbul@1.0.0:
     resolution: {integrity: sha512-1fSfIwuDICFA4LKkCzRPO7F0hzFf0B7+Xqrl27ynQaa+Rh0e1Es0v6kWHPott3lU10AyAr7oKHa65OppjLn3Rg==}
+
+  axe-core@4.13.0:
+    resolution: {integrity: sha512-UzGt8zg7Ny8djbYMhxl2zuEevVa7r2gJjYY5Lwr1xM7+XU2nd6CkIWFTVcCIbAP63vSz71NaVyyuSk9lHKcy0A==}
+    engines: {node: '>=4'}
 
   babel-plugin-jsx-dom-expressions@0.40.3:
     resolution: {integrity: sha512-5HOwwt0BYiv/zxl7j8Pf2bGL6rDXfV6nUhLs8ygBX+EFJXzBPHM/euj9j/6deMZ6wa52Wb2PBaAV5U/jKwIY1w==}
@@ -2284,6 +2296,12 @@ snapshots:
 
   '@standard-schema/spec@1.1.0': {}
 
+  '@storybook/addon-a11y@10.3.5(storybook@10.3.5(@testing-library/dom@10.4.0)(prettier@3.8.2)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))':
+    dependencies:
+      '@storybook/global': 5.0.0
+      axe-core: 4.13.0
+      storybook: 10.3.5(@testing-library/dom@10.4.0)(prettier@3.8.2)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+
   '@storybook/addon-vitest@10.3.5(@vitest/browser-playwright@4.1.4)(@vitest/browser@4.1.4)(@vitest/runner@4.1.4)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(storybook@10.3.5(@testing-library/dom@10.4.0)(prettier@3.8.2)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(vitest@4.1.4)':
     dependencies:
       '@storybook/global': 5.0.0
@@ -2669,6 +2687,8 @@ snapshots:
       '@jridgewell/trace-mapping': 0.3.31
       estree-walker: 3.0.3
       js-tokens: 10.0.0
+
+  axe-core@4.13.0: {}
 
   babel-plugin-jsx-dom-expressions@0.40.3(@babel/core@7.28.6):
     dependencies:

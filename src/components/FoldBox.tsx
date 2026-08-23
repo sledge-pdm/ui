@@ -1,4 +1,4 @@
-import { createSignal, Show, type Component, type JSX } from 'solid-js';
+import { createSignal, type Component, type JSX } from 'solid-js';
 import '../styles/FoldBox.css';
 
 interface FoldBoxProps {
@@ -12,16 +12,14 @@ const FoldBox: Component<FoldBoxProps> = (props) => {
 
   return (
     <div class='foldbox-root-container'>
-      <div class='foldbox-summary-container' aria-checked={open()} onClick={() => setOpen(!open())}>
+      <div class='foldbox-summary-container' classList={{ 'foldbox-open': open() }} onClick={() => setOpen(!open())}>
         <p class='foldbox-summary-title'>{props.title}</p>
         <span class='foldbox-indicator' aria-hidden='true' style={{ rotate: open() ? '180deg' : '' }} />
       </div>
 
-      <Show when={open()}>
-        <div class='foldbox-content-container' aria-checked={open()}>
-          <div class='foldbox-content'>{props.children}</div>
-        </div>
-      </Show>
+      <div class='foldbox-content-container' classList={{ 'foldbox-open': open() }}>
+        <div class='foldbox-content'>{props.children}</div>
+      </div>
     </div>
   );
 };
