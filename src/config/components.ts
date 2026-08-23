@@ -26,21 +26,21 @@ export const componentProps = new Map<ConfigComponentName, ConfigComponentProps>
   [
     'CheckBox',
     {
-      labelByComponent: false,
+      labelByComponent: true,
       labelMode: 'right',
     },
   ],
   [
     'RadioButton',
     {
-      labelByComponent: false,
+      labelByComponent: true,
       labelMode: 'right',
     },
   ],
   [
     'ToggleSwitch',
     {
-      labelByComponent: false,
+      labelByComponent: true,
       labelMode: 'right',
     },
   ],

@@ -1,4 +1,5 @@
 import type { Accessor, JSX } from 'solid-js';
+import type { BooleanControlProps } from '../components/control/BooleanControl';
 import type { DropdownOption } from '../components/control/Dropdown';
 import type { LabelMode } from '../types';
 import type { ConfigComponentName } from './components';
@@ -46,9 +47,11 @@ export type SliderFieldProps = {
   labelMode?: LabelMode;
 };
 
-export type ToggleSwitchFieldProps = Record<string, unknown>;
-export type RadioButtonFieldProps = Record<string, unknown>;
-export type CheckBoxFieldProps = Record<string, unknown>;
+type BooleanControlFieldProps = Pick<BooleanControlProps, 'name' | 'labelMode' | 'title'>;
+
+export type ToggleSwitchFieldProps = BooleanControlFieldProps;
+export type RadioButtonFieldProps = BooleanControlFieldProps;
+export type CheckBoxFieldProps = BooleanControlFieldProps;
 
 export type CustomRenderArgs<TValue = any, TField extends ConfigFieldBase = ConfigFieldBase> = {
   field: TField;

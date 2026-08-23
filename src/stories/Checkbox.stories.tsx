@@ -7,6 +7,16 @@ const meta: Meta<typeof Checkbox> = {
   component: Checkbox,
 };
 
+export const Standalone: Story = {
+  play: ({ canvasElement }) => {
+    const input = canvasElement.querySelector('.checkbox-input');
+    if (!(input instanceof HTMLInputElement)) throw new Error('Checkbox input was not rendered');
+
+    input.click();
+    if (!input.checked) throw new Error('Uncontrolled Checkbox did not retain its checked state');
+  },
+};
+
 export default meta;
 type Story = StoryObj<typeof Checkbox>;
 

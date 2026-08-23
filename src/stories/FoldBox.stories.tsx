@@ -52,8 +52,17 @@ export const Basic: Story = {
                 margin: '8px ',
               }}
             >
-              <RadioButton label='Toggle ME' />
-              <ToggleSwitch checked>no no toggle me instead</ToggleSwitch>
+              <div
+                style={{
+                  display: 'flex',
+                  'flex-direction': 'row',
+                  gap: '12px',
+                }}
+              >
+                <RadioButton name='radiogroup1' checked label='dont uncheck me' />
+                <RadioButton name='radiogroup1' label='try check me' />
+              </div>
+              <ToggleSwitch label='no no toggle me instead' />
             </div>
             <FoldBox title='more hidden options.'>
               <div

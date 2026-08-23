@@ -17,9 +17,7 @@ export const Basic: Story = {
     return (
       <div style={{ display: 'flex', gap: '10px', 'align-items': 'center' }}>
         <Light on={on()} />
-        <ToggleSwitch checked={on()} onChange={setOn}>
-          Power
-        </ToggleSwitch>
+        <ToggleSwitch checked={on()} label='Power' onChange={setOn} />
       </div>
     );
   },

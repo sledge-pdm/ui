@@ -40,11 +40,11 @@ export const ConfigFieldRenderer: Component<FieldRenderParams> = (props) => {
         />
       );
     case 'CheckBox':
-      return <Checkbox id={field.key ?? field.label ?? ''} checked={value()} onChange={onChange} {...field.props} />;
+      return <Checkbox {...field.props} id={field.key ?? field.label ?? ''} label={field.label} checked={Boolean(value())} onChange={onChange} />;
     case 'RadioButton':
-      return <RadioButton id={field.key ?? field.label ?? ''} value={value()} onChange={onChange} {...field.props} />;
+      return <RadioButton {...field.props} id={field.key ?? field.label ?? ''} label={field.label} checked={Boolean(value())} onChange={onChange} />;
     case 'ToggleSwitch':
-      return <ToggleSwitch id={field.key ?? field.label ?? ''} checked={value()} onChange={onChange} {...field.props} />;
+      return <ToggleSwitch {...field.props} id={field.key ?? field.label ?? ''} label={field.label} checked={Boolean(value())} onChange={onChange} />;
     case 'Custom':
       return <div>{field.props?.content?.() ?? null}</div>;
     default:
