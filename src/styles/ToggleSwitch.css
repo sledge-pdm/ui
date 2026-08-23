@@ -1,9 +1,19 @@
 .toggle-wrapper {
   display: inline-flex;
   align-items: center;
+  align-self: flex-start;
+  flex: 0 1 auto;
+  width: fit-content;
+  max-width: 100%;
+  box-sizing: border-box;
   gap: var(--spacing-sm);
   cursor: pointer;
   user-select: none;
+}
+
+.toggle-label {
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .toggle-input {
@@ -14,6 +24,7 @@
 }
 
 .toggle-track {
+  flex: 0 0 auto;
   width: 16px;
   height: 10px;
   background-color: var(--color-muted);

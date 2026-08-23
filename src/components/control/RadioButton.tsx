@@ -1,30 +1,30 @@
 import { Show, type Component } from 'solid-js';
 import '../../styles/RadioButton.css';
-import type { LabelMode } from '../../types';
+import { createBooleanControlState, type BooleanControlProps } from './BooleanControl';
 
-const RadioButton: Component<{
-  id?: string;
-  name?: string;
-  label?: string;
-  labelMode?: LabelMode;
-  value?: boolean;
-  title?: string;
-  onChange?: (checked: boolean) => void;
-}> = (props) => {
-  const labelMode = props.labelMode ?? 'left';
+export type RadioButtonProps = BooleanControlProps;
+
+const RadioButton: Component<RadioButtonProps> = (props) => {
+  const labelMode = () => props.labelMode ?? 'left';
+  const [checked, setChecked] = createBooleanControlState(props);
+
   return (
     <label class='radio-wrapper' title={props.title}>
-      <Show when={labelMode === 'left'}>{props.label}</Show>
+      <Show when={props.label !== undefined && labelMode() === 'left'}>
+        <span class='radio-label'>{props.label}</span>
+      </Show>
       <input
         id={props.id}
         class='radio-input'
         type='radio'
         name={props.name}
-        checked={props.value}
-        onChange={(e) => props.onChange?.(e.target.checked)}
+        checked={checked()}
+        onChange={(e) => setChecked(e.currentTarget.checked)}
       />
       <span class='radio-custom'></span>
-      <Show when={labelMode === 'right'}>{props.label}</Show>
+      <Show when={props.label !== undefined && labelMode() === 'right'}>
+        <span class='radio-label'>{props.label}</span>
+      </Show>
     </label>
   );
 };
