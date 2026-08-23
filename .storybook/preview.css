@@ -1,14 +1,32 @@
-﻿html,
-body {
+html,
+body,
+body.sb-show-main,
+body.sb-main-padded {
   width: 100%;
   height: auto;
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
   overflow-y: auto;
 }
 
+body.sb-main-padded.sb-show-main {
+
 #root,
-#storybook-root,
+main,
+#storybook-root {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  padding: 0;
+  margin: 0;
+}
+
 .sb-show-main,
 .sb-main-padded {
+  box-sizing: border-box;
   width: 100%;
+  max-width: 100%;
   height: auto;
 }
