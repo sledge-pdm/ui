@@ -1,0 +1,18 @@
+.modal-dialog-host {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-modal-dialog-overlay);
+  z-index: var(--zindex-modal-dialog, 4000);
+}
+
+/* 作者スタイルは UA の [hidden] より強いので、display を自分で戻す */
+.modal-dialog-host[hidden] {
+  display: none;
+}
+
+.modal-dialog-host:focus {
+  outline: none;
+}

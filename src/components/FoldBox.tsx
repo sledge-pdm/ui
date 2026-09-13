@@ -5,6 +5,7 @@ interface FoldBoxProps {
   defaultOpen?: boolean; // default closed if not specified
   title: string;
   children?: JSX.Element;
+  noContentPadding?: boolean;
 }
 
 const FoldBox: Component<FoldBoxProps> = (props) => {
@@ -15,7 +16,7 @@ const FoldBox: Component<FoldBoxProps> = (props) => {
         <span class='foldbox-indicator' aria-hidden='true' />
       </summary>
 
-      <div class='foldbox-content-container'>
+      <div class={`foldbox-content-container ${props.noContentPadding && 'foldbox-content-container-nopadding'}`}>
         <div class='foldbox-content'>{props.children}</div>
       </div>
     </details>

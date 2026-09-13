@@ -8,10 +8,13 @@ export { default as Dropdown, type DropdownOption } from './src/components/contr
 export { default as RadioButton, type RadioButtonProps } from './src/components/control/RadioButton';
 export { default as Slider } from './src/components/control/Slider';
 export { default as ToggleSwitch, type ToggleSwitchProps } from './src/components/control/ToggleSwitch';
-export { default as Dialog, type DialogProps } from './src/components/Dialog';
+export { default as Dialog, type DialogProps } from './src/components/dialog/Dialog';
+export { default as DialogContent, type DialogContentProps } from './src/components/dialog/DialogContent';
+export { default as ModalDialog, type ModalDialogProps } from './src/components/dialog/ModalDialog';
 export { default as FoldBox } from './src/components/FoldBox';
 export { default as Icon } from './src/components/Icon';
 export { default as Light } from './src/components/Light';
+export { default as LoadingBar, type LoadingBarProps } from './src/components/LoadingBar';
 export { MenuList, type MenuListOption } from './src/components/MenuList';
 export { default as Nothing } from './src/components/Nothing';
 export { SparkLine } from './src/components/SparkLine';

@@ -1,0 +1,34 @@
+.loading-bar-track {
+  position: relative;
+  width: 100%;
+  height: 4px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+.loading-bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: var(--color-accent);
+}
+
+.loading-bar-indeterminate {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 40%;
+  background-color: var(--color-accent);
+  animation: loading-bar-slide 1.1s linear infinite;
+}
+
+@keyframes loading-bar-slide {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(250%);
+  }
+}

@@ -1,10 +1,10 @@
 import { createSignal, Show } from 'solid-js';
 import type { Meta, StoryObj } from 'storybook-solidjs-vite';
-import Button from '../components/Button';
-import Dialog from '../components/Dialog';
+import Button from '../../components/Button';
+import Dialog from '../../components/dialog/Dialog';
 
 const meta: Meta<typeof Dialog> = {
-  title: 'Components/Dialog',
+  title: 'Dialog/Dialog',
   component: Dialog,
 };
 
@@ -79,26 +79,6 @@ export const WithCloseSemiTransparent: Story = {
           <Dialog title='Dialog' backgroundOpacity={0.4} onClose={() => setOpen(false)}>
             <div style={{ padding: '8px' }}>
               <p>Click × to close.</p>
-            </div>
-          </Dialog>
-        </Show>
-      </div>
-    );
-  },
-};
-
-export const Modal: Story = {
-  render: () => {
-    const [open, setOpen] = createSignal(true);
-    return (
-      <div>
-        <Show when={!open()}>
-          <Button onClick={() => setOpen(true)}>Reopen</Button>
-        </Show>
-        <Show when={open()}>
-          <Dialog title='Modal Dialog' modal onClose={() => setOpen(false)}>
-            <div style={{ padding: '8px' }}>
-              <p>Backdrop blocks interaction behind this dialog.</p>
             </div>
           </Dialog>
         </Show>
