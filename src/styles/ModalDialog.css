@@ -4,8 +4,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--color-overlay);
-  z-index: 1;
+  background-color: var(--color-modal-dialog-overlay);
+  z-index: var(--zindex-modal-dialog, 4000);
 }
 
 /* 作者スタイルは UA の [hidden] より強いので、display を自分で戻す */
@@ -13,17 +13,6 @@
   display: none;
 }
 
-.modal-dialog {
-  position: relative;
-  margin: 0;
-  padding: 0;
-  inset: auto;
-  border: 1px solid var(--color-border);
-  border-radius: 2px;
-  background-color: var(--color-background);
-  color: var(--color-on-background);
-}
-
-.modal-dialog:focus {
+.modal-dialog-host:focus {
   outline: none;
 }

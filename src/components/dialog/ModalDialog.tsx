@@ -1,8 +1,10 @@
 import { createEffect, onCleanup, type Component, type JSX } from 'solid-js';
-import '../styles/ModalDialog.css';
+import '../../styles/ModalDialog.css';
+import DialogContent from './DialogContent';
 
 export interface ModalDialogProps {
   open: boolean;
+  title?: string;
   /** 制限をかける範囲。省略時はこのダイアログを置いた親要素。position: static 以外であること */
   scope?: HTMLElement | (() => HTMLElement | undefined);
   class?: string;
@@ -15,7 +17,6 @@ export interface ModalDialogProps {
  */
 const ModalDialog: Component<ModalDialogProps> = (props) => {
   let hostRef: HTMLDivElement | undefined;
-  let dialogRef: HTMLDialogElement | undefined;
   let focusToRestore: HTMLElement | undefined;
   let inerted: HTMLElement[] = [];
 
@@ -44,34 +45,25 @@ const ModalDialog: Component<ModalDialogProps> = (props) => {
   };
 
   createEffect(() => {
-    const open = props.open;
-    if (!dialogRef) return;
-
-    if (open && !dialogRef.open) {
+    if (props.open) {
       const active = document.activeElement;
       focusToRestore = active instanceof HTMLElement && active !== document.body ? active : undefined;
       applyInert();
-      // showModal はトップレイヤーへ昇格して viewport 全体を覆い、document 全体を inert にする
-      dialogRef.show();
-      dialogRef.focus();
-    } else if (!open && dialogRef.open) {
-      dialogRef.close();
+      hostRef?.focus();
+    } else {
       releaseInert();
       if (focusToRestore?.isConnected) focusToRestore.focus();
       focusToRestore = undefined;
     }
   });
 
-  onCleanup(() => {
-    releaseInert();
-    if (dialogRef?.open) dialogRef.close();
-  });
+  onCleanup(releaseInert);
 
   return (
-    <div ref={(el) => (hostRef = el)} class='modal-dialog-host' hidden={!props.open}>
-      <dialog ref={(el) => (dialogRef = el)} class={['modal-dialog', props.class].filter(Boolean).join(' ')} tabIndex={-1}>
+    <div ref={(el) => (hostRef = el)} class='modal-dialog-host' hidden={!props.open} tabIndex={-1}>
+      <DialogContent title={props.title} class={props.class}>
         {props.children}
-      </dialog>
+      </DialogContent>
     </div>
   );
 };

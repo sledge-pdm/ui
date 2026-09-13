@@ -1,11 +1,11 @@
 import { createSignal, onCleanup } from 'solid-js';
 import type { Meta, StoryObj } from 'storybook-solidjs-vite';
-import Button from '../components/Button';
-import FoldBox from '../components/FoldBox';
-import ModalDialog from '../components/ModalDialog';
+import Button from '../../components/Button';
+import FoldBox from '../../components/FoldBox';
+import ModalDialog from '../../components/dialog/ModalDialog';
 
 const meta: Meta<typeof ModalDialog> = {
-  title: 'Components/ModalDialog',
+  title: 'Dialog/ModalDialog',
   component: ModalDialog,
 };
 
@@ -57,7 +57,7 @@ export const InContainer: Story = {
       <div style={{ display: 'flex', 'flex-direction': 'column', gap: '12px', width: '400px' }}>
         <Button onClick={start}>Start loading</Button>
 
-        <FoldBox title='container.' defaultOpen>
+        <FoldBox title='container.' noContentPadding defaultOpen>
           <div
             style={{
               position: 'relative',

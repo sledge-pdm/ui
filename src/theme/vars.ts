@@ -25,7 +25,7 @@ export const color = {
   muted: 'var(--color-muted)',
   error: 'var(--color-error)',
   warn: 'var(--color-warn)',
-  overlay: 'var(--color-overlay)',
+  modalDialogOverlay: 'var(--color-modal-dialog-overlay)',
   button: {
     bg: 'var(--color-button-bg)',
     hover: 'var(--color-button-hover)',

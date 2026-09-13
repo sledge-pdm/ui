@@ -10,8 +10,6 @@ body.sb-main-padded {
   overflow-y: auto;
 }
 
-body.sb-main-padded.sb-show-main {
-
 #root,
 main,
 #storybook-root {
