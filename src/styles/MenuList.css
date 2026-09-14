@@ -5,17 +5,17 @@
   top: 100%;
   padding: 2px 0px;
   z-index: var(--zindex-dropdown-menu);
-  background-color: var(--color-background);
+  background-color: var(--color-controls);
   overflow-y: auto;
 }
 
 .menu-simple {
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-border-secondary);
   border-radius: 1px;
 }
 
 .menu-emphasis {
-  border: 1px solid var(--color-on-background);
+  border: 1px solid var(--color-border);
   border-radius: 4px;
 }
 
@@ -79,12 +79,12 @@
   top: 100%;
   bottom: auto;
   margin-top: 0px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 2px var(--color-shadow-drop);
 }
 
 .menu-dir-up {
   top: auto;
   bottom: 100%;
   margin-bottom: 0px;
-  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 -2px 2px var(--color-shadow-drop);
 }
