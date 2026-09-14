@@ -55,14 +55,14 @@
   top: 100%;
   bottom: auto;
   margin-top: 0px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 2px var(--color-shadow-drop);
 }
 
 .dropdown-menu-up {
   top: auto;
   bottom: 100%;
   margin-bottom: 0px;
-  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 -2px 2px var(--color-shadow-drop);
 }
 
 .dropdown-item-text {

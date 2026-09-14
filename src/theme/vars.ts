@@ -19,6 +19,7 @@ export const color = {
   borderSecondary: 'var(--color-border-secondary)',
   shadowTopLight: 'var(--color-shadow-top-light)',
   shadowBottomShadow: 'var(--color-shadow-bottom-shadow)',
+  shadowDrop: 'var(--color-shadow-drop)',
   accent: 'var(--color-accent)',
   active: 'var(--color-active)',
   enabled: 'var(--color-enabled)',
