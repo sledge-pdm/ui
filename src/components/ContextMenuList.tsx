@@ -50,6 +50,7 @@ export const ContextMenuList: Component<Props> = (props) => {
         ref={(ref) => (containerRef = ref)}
         class='context-menu'
         closeByOutsideClick
+        focusOnMount
         onClose={() => props.onClose?.()}
         options={props.options}
         style={{
