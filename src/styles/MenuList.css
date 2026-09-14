@@ -30,8 +30,17 @@
   cursor: pointer;
 }
 
-.menu-item:hover {
+.menu-item:hover,
+.menu-item:focus,
+.menu-item:focus-visible {
   background-color: var(--color-surface);
+  outline: none;
+}
+
+/* リスト自体は矢印キーの入口としてフォーカスを受けるだけなので、枠は出さない */
+.menu:focus,
+.menu:focus-visible {
+  outline: none;
 }
 
 .menu-label {
