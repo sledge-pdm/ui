@@ -9,25 +9,25 @@
     "./global.css": "./src/theme/global.css"
   },
   "dependencies": {
-    "@sledge-pdm/core": "^1.2.7",
-    "solid-js": "^1.9.12"
+    "@sledge-pdm/core": "^1.2.8",
+    "solid-js": "^1.9.15"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^5.3.1",
     "@storybook/addon-a11y": "^10.6.0",
     "@storybook/addon-vitest": "^10.6.0",
-    "@types/node": "^25.6.0",
+    "@types/node": "^26.6.3",
     "@vitest/browser": "^4.1.4",
     "@vitest/browser-playwright": "^4.1.4",
     "@vitest/coverage-v8": "^4.1.4",
-    "playwright": "^1.59.1",
-    "prettier": "^3.8.2",
+    "playwright": "^1.63.0",
+    "prettier": "^3.9.9",
     "prettier-plugin-organize-imports": "^4.3.0",
     "storybook": "^10.6.0",
-    "storybook-solidjs-vite": "^10.0.12",
+    "storybook-solidjs-vite": "^10.7.2",
     "typescript": "^6.0.2",
-    "vite": "^8.0.8",
-    "vite-plugin-solid": "^2.11.12",
+    "vite": "^8.3.1",
+    "vite-plugin-solid": "^2.11.14",
     "vitest": "^4.1.4"
   },
   "scripts": {
