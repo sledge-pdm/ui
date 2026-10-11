@@ -18,10 +18,6 @@ export { default as LoadingBar, type LoadingBarProps } from './src/components/Lo
 export { MenuList, type MenuListOption } from './src/components/MenuList';
 export { default as Nothing } from './src/components/Nothing';
 export { SparkLine } from './src/components/SparkLine';
-export * from './src/config/components';
-export * from './src/config/path';
-export { ConfigFieldRenderer } from './src/config/renderer';
-export * from './src/config/types';
 export { type LabelMode } from './src/types';
 
 // theme
