@@ -4,6 +4,7 @@ import type { LabelMode } from '../../types';
 
 interface SliderProps {
   // style
+  appearance?: 'default' | 'simple';
   orientation?: 'horizontal' | 'vertical';
   labelMode: LabelMode;
   labelWidth?: number;
@@ -302,6 +303,7 @@ const Slider: Component<SliderProps> = (props) => {
   return (
     <div
       class={isVertical() ? 'slider-root-vertical' : 'slider-root'}
+      data-appearance={props.appearance ?? 'default'}
       style={{
         gap: props.labelGap ? `${props.labelGap}px` : '8px',
       }}

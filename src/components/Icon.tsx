@@ -13,13 +13,25 @@ interface IconProps extends JSX.HTMLAttributes<HTMLDivElement> {
   /** 元PNG のドット数（正方形前提）。省略時 16 */
   base?: number;
 
+  pointerCursor?: boolean;
   transform?: string;
   filter?: string;
   backdropFilter?: string;
 }
 
 const Icon: Component<IconProps> = (props: IconProps) => {
-  const [local, rest] = splitProps(props, ['src', 'color', 'hoverColor', 'scale', 'base', 'transform', 'filter', 'backdropFilter', 'class']);
+  const [local, rest] = splitProps(props, [
+    'src',
+    'color',
+    'hoverColor',
+    'scale',
+    'base',
+    'pointerCursor',
+    'transform',
+    'filter',
+    'backdropFilter',
+    'class',
+  ]);
   const px = (local.base ?? 16) * (local.scale ?? 1);
 
   return (
@@ -31,6 +43,7 @@ const Icon: Component<IconProps> = (props: IconProps) => {
         '--icon-fill': local.color ?? 'currentColor',
         '--icon-hover-fill': local.hoverColor ?? local.color ?? 'currentColor',
         '--icon-url': `url("${local.src}")`,
+        cursor: local.pointerCursor ? 'pointer' : 'inherit',
         transform: local.transform,
         '-webkit-transform': local.transform,
         filter: local.filter,

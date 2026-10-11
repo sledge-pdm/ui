@@ -6,9 +6,14 @@ const meta: Meta<typeof Slider> = {
   title: 'Control/Slider',
   component: Slider,
   args: {
+    appearance: 'default',
     labelMode: 'left',
   },
   argTypes: {
+    appearance: {
+      options: ['default', 'simple'],
+      control: { type: 'radio' },
+    },
     labelMode: {
       options: ['left', 'none', 'right'],
       control: { type: 'radio' },
@@ -82,4 +87,14 @@ export const Vertical: Story = {
       </div>
     );
   },
+};
+
+export const SimpleHorizontal: Story = {
+  ...Horizontal,
+  args: { appearance: 'simple' },
+};
+
+export const SimpleVertical: Story = {
+  ...Vertical,
+  args: { appearance: 'simple' },
 };
